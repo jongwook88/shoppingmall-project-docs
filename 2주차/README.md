@@ -2,6 +2,10 @@
 
 ---
 
+## [2주차 과제 프로젝트 코드](<https://github.com/jungeunlee95/shopping-mall>)
+
+<br>
+
 # 2주차
 
 ## 2주차 과제
