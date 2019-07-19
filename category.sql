@@ -1,5 +1,7 @@
 desc category;
-select * from category;
+select * from category where depth = 1;
+select no, name, depth, group_no groupNo, order_no orderNo from category
+order by group_no, no, order_no;
 
 -- 첫번 째 카테고리 등록
 insert into category(no, name, depth, group_no, order_no) 
@@ -56,4 +58,5 @@ select * from category;
 
 -- 카테고리 삭제
 delete from category where no=11;
+
 
