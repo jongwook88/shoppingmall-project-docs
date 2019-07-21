@@ -1,5 +1,5 @@
 desc category;
-select * from category where depth = 1;
+select * from category;
 select no, name, depth, group_no groupNo, order_no orderNo from category
 order by group_no, no, order_no;
 

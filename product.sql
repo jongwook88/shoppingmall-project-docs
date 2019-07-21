@@ -1,9 +1,10 @@
 desc product;
 
-select * from product;
-select * from category_product;
+select * from product order by no desc;
+select * from category;
+select COL no, category_no, product_no from category_product order by COL desc;
 select * from option;
-select * from optionvalue;
+select * from optionvalue order by no desc;
 
 delete from category_product;
 
