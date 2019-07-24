@@ -54,16 +54,50 @@ from product
 where no = 1;
 
 select * from optionvalue;
--- 상품 옵션
+-- 상품 옵션(검정, 핑크, L)
 select o.no optionNo, o.name , ov.value
 from optionvalue ov, option o, product p
 where ov.optionname_no = o.no
 and p.no = ov.product_no
 and ov.product_no=1
 order by o.no, ov.no;
---
+-- 상품 옵션 ( 검정/L)
 select no, product_no productNo, productoption_name productOptionName,
 		additional_amount additionalAmount, use_stock useStock, stock
 from productoption
 where product_no = 1;
+
+-- 상품 삭제
+delete from product where no =1;
+
+-- 상품 수정
+select * from product;
+update product
+set name = "치마다", price = 1111, isshow=0, isoption=0, 
+shipping_fee=3000, order_no=2, contents="ㅎㅎ"
+where no = 3;
+-- 하위 옵션 insert
+insert into optionvalue values(null, 30, 1, "검정");
+-- 최종 옵션 insert
+insert into productoption
+values(null, 34, "검정/L", 0, true, 50);
+
+-- 하위 옵션 수정
+delete from optionvalue
+where product_no=35;
+insert into optionvalue values(null, 35, 1, "검정");
+
+select * from productoption;
+
+-- 상품 하위 옵션 + 상위옵션 이름 가져오기
+select ov.no no, ov.product_no productNo, ov.optionname_no optionNo, o.name optionName, ov.value 
+from optionvalue ov, option o 
+where o.no = ov.optionname_no
+and product_no=35
+order by optionname_no, no;
+
+
+
+
+
 
