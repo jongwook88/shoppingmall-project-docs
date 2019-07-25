@@ -58,3 +58,48 @@ where no = 7;
 
 -- 회원 삭제
 delete from user where no = 6;
+
+-- 회원 주소지 추가 
+select * from address;
+select * from user;
+insert into address values(null, 1, 
+AES_ENCRYPT("16929", SHA2("aaa", 512)),  
+AES_ENCRYPT("경기도 용인시 무슨 아파트", SHA2("aaa", 512)), 
+AES_ENCRYPT("몇동 몇호", SHA2("aaa", 512)),  "집");
+
+-- 회원 주소지 리스트 가져오기
+select no, user_no userNo,
+convert(AES_DECRYPT(address_code, SHA2("aaa", 512)) using utf8) as addressCode,
+convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) as address,
+convert(AES_DECRYPT(address_detail, SHA2("aaa", 512)) using utf8) as addressDetail,
+address_check addressCheck
+from address
+where user_no = 2;
+
+-- 회원 주소 가져오기
+select no, user_no userNo,
+convert(AES_DECRYPT(address_code, SHA2("aaa", 512)) using utf8) as addressCode,
+convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) as address,
+convert(AES_DECRYPT(address_detail, SHA2("aaa", 512)) using utf8) as addressDetail,
+address_check addressCheck
+from address
+where no = 1;
+
+-- 회원 주소지 삭제
+delete from address where no = 3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
