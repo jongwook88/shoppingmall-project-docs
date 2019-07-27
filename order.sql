@@ -8,6 +8,16 @@ select * from orderdetail;
 delete from orderdetail;
 delete from orders;
 
+-- 주문시 재고 체크
+select use_stock useStock, stock
+from productoption
+where no = 8;
+
+-- 주문 후 재고 감소
+update productoption 
+set stock = stock+3
+where no = 8;
+
 -- 회원 주문 insert
 insert into orders(no, user_no, order_no, name, gender, phone_number, 
 email, address, total_price, reg_date, message) values(null,
@@ -46,19 +56,22 @@ AES_ENCRYPT("경기도", SHA2("aaa", 512)), 30000, now(), "집앞에 놔주세�
 );
 
 -- 주문 정보
-select no, user_no, order_no,  
+select * from orders;
+select no, user_no userNo, order_no orderStringNo,   
 convert(AES_DECRYPT(name, SHA2("aaa", 512)) using utf8) name,
 gender, convert(AES_DECRYPT(phone_number, SHA2("aaa", 512)) using utf8) phoneNumber,
 convert(AES_DECRYPT(email, SHA2("aaa", 512)) using utf8) email,
-convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) address
-from orders;
+convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) address,
+total_price totalPrice, reg_date regDate, message
+from orders
+where user_no=2
+order by no desc;
 
 -- 주문 상세 select
 select * from orderdetail;
-select no, order_no orderNo, 
+select no, order_no orderNo, product_no productNo,
 (select order_no from orders where no = orderNo ) orderStringNo,
  product_name productName,
-productoption_no productOptionNo, 
-(select productoption_name from productoption where no = productoption_no) productOptionName,
+productoption_name productOptionName,
 quantity, status, price 
 from orderdetail;
