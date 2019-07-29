@@ -7,6 +7,14 @@ select * from orderdetail;
 
 delete from orderdetail;
 delete from orders;
+delete from payment;
+delete from paymentdetail;
+
+-- 주문 후 장바구니 비우기
+select * from cart;
+delete from cart 
+where user_no = 2
+and productoption_no=8;
 
 -- 주문시 재고 체크
 select use_stock useStock, stock
@@ -55,7 +63,7 @@ AES_ENCRYPT("leeap1004@gmail.com", SHA2("aaa", 512)),
 AES_ENCRYPT("경기도", SHA2("aaa", 512)), 30000, now(), "집앞에 놔주세요"
 );
 
--- 주문 정보
+-- 주문 정보(회원)
 select * from orders;
 select no, user_no userNo, order_no orderStringNo,   
 convert(AES_DECRYPT(name, SHA2("aaa", 512)) using utf8) name,
@@ -67,6 +75,20 @@ from orders
 where user_no=2
 order by no desc;
 
+-- 주문 정보(비회원)
+select * from orders;
+select no, user_no userNo, order_no orderStringNo,   
+convert(AES_DECRYPT(name, SHA2("aaa", 512)) using utf8) name,
+gender, convert(AES_DECRYPT(phone_number, SHA2("aaa", 512)) using utf8) phoneNumber,
+convert(AES_DECRYPT(email, SHA2("aaa", 512)) using utf8) email,
+convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) address,
+total_price totalPrice, reg_date regDate, message
+from orders
+where order_no="20190727-000018"
+and password = SHA2("1234", 512)
+order by no desc;
+
+
 -- 주문 상세 select
 select * from orderdetail;
 select no, order_no orderNo, product_no productNo,
@@ -74,4 +96,5 @@ select no, order_no orderNo, product_no productNo,
  product_name productName,
 productoption_name productOptionName,
 quantity, status, price 
-from orderdetail;
+from orderdetail
+where order_no=27;
