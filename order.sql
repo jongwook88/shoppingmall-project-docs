@@ -37,7 +37,7 @@ email, address, total_price, reg_date, message) values(null,
 AES_ENCRYPT("이정은", SHA2("aaa", 512)), "F",  
 AES_ENCRYPT("010-9274-3036", SHA2("aaa", 512)), 
 AES_ENCRYPT("leeap1004@gmail.com", SHA2("aaa", 512)),
-AES_ENCRYPT("경기도", SHA2("aaa", 512)), 30000, now(), "집앞에 놔주세요"
+AES_ENCRYPT("경기도", SHA2("aaa", 512)), 90000, now(), "집앞에 놔주세요"
 );
 
 -- 회원 주문 상세 insert
@@ -98,3 +98,4 @@ productoption_name productOptionName,
 quantity, status, price 
 from orderdetail
 where order_no=27;
+
