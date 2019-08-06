@@ -25,6 +25,7 @@ from user
 where convert(AES_DECRYPT(id, SHA2("aaa", 512)) using utf8) = 'leeap1003'
 and password = SHA2("Wjddms1234", 512);
 
+
 -- 회원 가입
 insert into user(no, id, name, password, pw_question, pw_answer, phone_number, email, birth_date, role, point, end_date, gender) 
 values(null, 
@@ -35,7 +36,7 @@ SHA2("Wjddms1234",512),
 AES_ENCRYPT("핸드폰",SHA2("aaa", 512)), 
 AES_ENCRYPT("010-9274-3036", SHA2("aaa", 512)), 
 AES_ENCRYPT("leeap1003@gmail.com",SHA2("aaa", 512)), 
-"1995-11-29", "U", 0, null, 'F');
+"1995-11-29", "U", 0, null, 'M');
 
 -- 회원 리스트
 select no, convert(AES_DECRYPT(id, SHA2("aaa", 512)) using utf8) as id,
