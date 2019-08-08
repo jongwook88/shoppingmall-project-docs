@@ -30,3 +30,4 @@ INSERT INTO oauth_client_details (
     AUTOAPPROVE )
 VALUES ('jemall', 'jemall_api', '1234', 'read,write,trust', 
 'password,client_credentials', '', 'ROLE_CLIENT', null, null, '{}', '');
+select * from oauth_client_details;

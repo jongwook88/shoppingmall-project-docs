@@ -1,4 +1,4 @@
-select * from cart;
+select * from cart order by no desc;
 select * from productoption;
 select * from product;
 select * from user;
@@ -71,7 +71,13 @@ select * from cart;
 
 
 
-
+select c.no cartNo, p.no productNo, c.productoption_no productoptionNo, p.name, po.productoption_name productName,
+		sum(c.quantity) quantity, p.price, sum(c.quantity)*price sumPrice
+from cart c, productoption po, product p
+where c.productoption_no = po.no
+and po.product_no = p.no
+and user_no =40
+group by productoptionNo;
 
 
 

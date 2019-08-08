@@ -1,24 +1,34 @@
 desc product;
+alter table user
+change password password varbinary(200) not null;
 
+desc user;
 select * from product order by no desc;
+select * from category_product order by no desc;
+insert into category_product values
+(null, 2 , 48), 
+(null, 2 , 48);
+
 select * from category;
 select COL no, category_no, product_no from category_product order by COL desc;
 select * from option;
 select * from optionvalue order by no desc;
 
 delete from category_product;
+-- 상품 대표 이미지
+select * from mainimage;
+insert into mainimage values (null, 3, "임시url", 1);
 
 -- 상품 등록
 insert into product
 values(null, "aaa", "곰티", 25000, now(), true, true, 2500, 1, "<h1>Hello</h1>");
 
 -- 상품 옵션 등록
-select * from productoption;
+select * from productoption order by no desc;
 select * from product;
 
 insert into productoption
 values(null, 1, "검정/S", 0, true, 500);
-
 
 -- 카테고리
 insert into category_product
@@ -38,6 +48,16 @@ select * from optionvalue;
 insert into optionvalue
 values(null, 1, 3, "짧");
 
+-- 상품리스트 전체
+select p.no, img_url mainImg, code, name, price, reg_date regDate, isshow isShow, 
+isoption isOption, shipping_fee shippingFee, order_no orderNo
+from product p left join mainimage i
+on p.no = i.product_no
+order by no desc;
+
+
+select * from product;
+select * from mainimage;
 -- 상품 리스트 가져오기(선택 카테고리)
 select * from category_product where category_no=1;
 select no, code, name, price, reg_date regDate, isshow isShow, isoption isOption, shipping_fee shippingFee, order_no orderNo

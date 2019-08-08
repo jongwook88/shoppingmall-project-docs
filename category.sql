@@ -30,7 +30,7 @@ values(null, "치마", 2, 2, 1);
 -- 모든 카테고리 가져오기
 select * 
 from category
-where depth = 1
+where depth > 1
 order by no;
 
 -- 해당 카테고리의 하위 카테고리 가져오기
@@ -59,4 +59,11 @@ select * from category;
 -- 카테고리 삭제
 delete from category where no=11;
 
+
+select p.no, i.img_url mainImg, name, price, reg_date as 'regDate', isshow as isShow, 
+		isoption as isOption, shipping_fee as shippingFee, order_no as orderNo,
+		contents
+from product p, mainimage i
+where p.no = i.product_no
+and p.no = 53;
 
