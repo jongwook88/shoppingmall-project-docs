@@ -57,8 +57,8 @@ convert(AES_DECRYPT(pw_answer, SHA2("aaa", 512)) using utf8) as passwordAnswer,
 convert(AES_DECRYPT(phone_number, SHA2("aaa", 512)) using utf8) as phoneNumber,
 convert(AES_DECRYPT(email, SHA2("aaa", 512)) using utf8) as email,
 DATE_FORMAT(birth_date,'%Y-%m-%d') as birthDate, role, point, end_date as endDate, gender
-from user
-where no = 39; 
+from user;
+
 
 -- 회원 정보 수정 
 update user set 

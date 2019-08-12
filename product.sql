@@ -63,7 +63,7 @@ select * from category_product where category_no=1;
 select no, code, name, price, reg_date regDate, isshow isShow, isoption isOption, shipping_fee shippingFee, order_no orderNo
 from product
 where no in (select product_no from category_product where category_no=1)
-and name like '%1%'
+and name like '%원%'
 order by no desc
 limit 0, 5;
 
@@ -117,7 +117,16 @@ and product_no=35
 order by optionname_no, no;
 
 
+-- 상품 리스트 페이지
+select p.no, img_url mainImg, code, name, price, reg_date regDate, isshow isShow, 
+		isoption isOption, shipping_fee shippingFee, order_no orderNo
+from product p left join mainimage i
+on p.no = i.product_no
+-- where name like CONCAT('%','원','%')
+order by no desc
+limit 0, 5;
 
-
+select * from productoption;
+select * from cart;
 
 
