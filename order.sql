@@ -66,14 +66,16 @@ AES_ENCRYPT("경기도", SHA2("aaa", 512)), 30000, now(), "집앞에 놔주세�
 -- 주문 정보(회원)
 select * from orders;
 select no, user_no userNo, order_no orderStringNo,   
-convert(AES_DECRYPT(name, SHA2("aaa", 512)) using utf8) name,
-gender, convert(AES_DECRYPT(phone_number, SHA2("aaa", 512)) using utf8) phoneNumber,
-convert(AES_DECRYPT(email, SHA2("aaa", 512)) using utf8) email,
-convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) address,
-total_price totalPrice, reg_date regDate, message
+convert(AES_DECRYPT(name, SHA2("aaa", 512)) using utf8) userName,
+convert(AES_DECRYPT(phone_number, SHA2("aaa", 512)) using utf8) userPhoneNumber,
+convert(AES_DECRYPT(email, SHA2("aaa", 512)) using utf8) userEmail,
+convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) userAddress,
+total_price totalPrice, reg_date regDate, message shippingMessage
 from orders
-where user_no=2
 order by no desc;
+
+select * from orderdetail
+where order_no = 1;
 
 -- 주문 정보(비회원)
 select * from orders;
@@ -87,6 +89,7 @@ from orders
 where order_no="20190727-000018"
 and password = SHA2("1234", 512)
 order by no desc;
+
 
 
 -- 주문 상세 select
