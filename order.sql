@@ -102,3 +102,12 @@ quantity, status, price
 from orderdetail
 where order_no=27;
 
+select no, user_no userNo, order_no orderStringNo,   
+convert(AES_DECRYPT(name, SHA2("aaa", 512)) using utf8) userName,
+convert(AES_DECRYPT(phone_number, SHA2("aaa", 512)) using utf8) userPhoneNumber,
+convert(AES_DECRYPT(email, SHA2("aaa", 512)) using utf8) userEmail,
+convert(AES_DECRYPT(address, SHA2("aaa", 512)) using utf8) userAddress,
+total_price totalPrice, reg_date regDate, message shippingMessage
+from orders
+where user_no = 43
+order by no desc;
